@@ -1,0 +1,33 @@
+https://dev.classmethod.jp/articles/circleci-obrs-aws-cli/
+
+# CircleCI用のIAMユーザを準備する
+## IAMユーザの作成
+
+```
+$ aws iam create-user \
+    --user-name circleci-test-user
+```
+
+## IAMユーザにIAMポリシーをアタッチ
+
+```
+$ aws iam attach-user-policy \
+    --user-name circleci-test-user \
+    --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+```
+
+## アクセスキーの取得
+
+```
+aws iam create-access-key \
+    --user-name circleci-test-user
+```
+
+# CircleCIのワークフローを作成する
+
+```
+mkdir .circleci
+touch .circleci/config.yml
+```
+
+a
